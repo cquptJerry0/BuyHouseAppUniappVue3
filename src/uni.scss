@@ -1,0 +1,190 @@
+/**
+ * 找房小程序 - 墨绿色主题风格
+ */
+
+/* ==================== 颜色变量 ==================== */
+
+/* 主题色系 - 墨绿色风格 */
+$house-color-primary: #00a884; // 主色
+$house-color-primary-light: #2cbf9e; // 主色-浅色
+$house-color-primary-dark: #008c6e; // 主色-深色
+$house-color-secondary: #40b3a2; // 辅助色
+
+/* 功能色 */
+$house-color-success: #4cd964; // 成功色
+$house-color-warning: #ff9500; // 警告色
+$house-color-error: #ff3b30; // 错误色
+$house-color-info: #5ac8fa; // 信息色
+
+/* 中性色 */
+$house-color-black: #333333; // 主要文字
+$house-color-dark: #666666; // 常规文字
+$house-color-gray: #999999; // 次要文字
+$house-color-light: #cccccc; // 占位文字
+$house-color-border: #eeeeee; // 边框
+$house-color-bg: #f8f8f8; // 背景色
+$house-color-white: #ffffff; // 白色
+
+/* 楼盘标签颜色 */
+$house-tag-hot: #ff6b6b; // 热门楼盘
+$house-tag-new: #20c997; // 最新取证
+$house-tag-coming: #ffa94d; // 即将预售
+$house-tag-sellout: #008c6e; // 售罄
+$house-tag-selling: #9775fa; // 在售楼盘
+$house-tag-discount: #339af0; // 优惠楼盘
+
+/* 继承uni-app原有变量并覆盖部分变量 */
+$uni-color-primary: $house-color-primary;
+$uni-color-success: $house-color-success;
+$uni-color-warning: $house-color-warning;
+$uni-color-error: $house-color-error;
+
+$uni-text-color: $house-color-black;
+$uni-text-color-inverse: $house-color-white;
+$uni-text-color-grey: $house-color-gray;
+
+$uni-bg-color: $house-color-white;
+$uni-bg-color-grey: $house-color-bg;
+
+/* ==================== 排版变量 ==================== */
+
+/* 字体大小 */
+$house-font-size-xs: 20rpx; // 超小
+$house-font-size-sm: 24rpx; // 小
+$house-font-size-md: 28rpx; // 中
+$house-font-size-lg: 32rpx; // 大
+$house-font-size-xl: 36rpx; // 超大
+$house-font-size-xxl: 40rpx; // 特大
+$house-font-size-title: 48rpx; // 标题
+
+/* 字体粗细 */
+$house-font-weight-normal: 400;
+$house-font-weight-medium: 500;
+$house-font-weight-bold: 600;
+
+/* 行高 */
+$house-line-height-tight: 1.2;
+$house-line-height-normal: 1.5;
+$house-line-height-loose: 1.8;
+
+/* ==================== 间距变量 ==================== */
+
+/* 基础间距 */
+$house-spacing-xs: 8rpx;
+$house-spacing-sm: 16rpx;
+$house-spacing-md: 24rpx;
+$house-spacing-lg: 32rpx;
+$house-spacing-xl: 48rpx;
+$house-spacing-xxl: 64rpx;
+
+/* 内容边距 */
+$house-content-padding: 32rpx;
+$house-card-padding: 24rpx;
+
+/* ==================== 圆角变量 ==================== */
+
+/* 圆角大小 */
+$house-radius-xs: 4rpx;
+$house-radius-sm: 8rpx;
+$house-radius-md: 16rpx;
+$house-radius-lg: 24rpx;
+$house-radius-xl: 32rpx;
+$house-radius-circle: 50%;
+
+/* ==================== 阴影变量 ==================== */
+
+/* 阴影 */
+$house-shadow-sm: 0 4rpx 8rpx rgba(0, 0, 0, 0.05);
+$house-shadow-md: 0 8rpx 16rpx rgba(0, 0, 0, 0.08);
+$house-shadow-lg: 0 16rpx 32rpx rgba(0, 0, 0, 0.1);
+
+/* ==================== 实用 mixins ==================== */
+
+// 弹性布局
+@mixin house-flex($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// 单行文本溢出省略
+@mixin house-text-ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 多行文本溢出省略
+@mixin house-text-ellipsis-multi($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 卡片样式
+@mixin house-card() {
+  background-color: $house-color-white;
+  border-radius: $house-radius-md;
+  padding: $house-card-padding;
+  box-shadow: $house-shadow-sm;
+}
+
+// 标签样式
+@mixin house-tag(
+  $bg-color: $house-color-primary,
+  $text-color: $house-color-white
+) {
+  display: inline-block;
+  padding: 4rpx 12rpx;
+  background-color: $bg-color;
+  color: $text-color;
+  font-size: $house-font-size-xs;
+  border-radius: $house-radius-xs;
+  line-height: 1.2;
+}
+
+// 左对齐标题的mixin
+@mixin section-title-left {
+  text-align: left;
+
+  :deep(.uni-section-header) {
+    justify-content: flex-start;
+  }
+
+  :deep(.uni-section-header__content) {
+    align-items: flex-start;
+  }
+
+  :deep(.uni-section__content-title) {
+    padding-left: 0;
+  }
+}
+
+// 右对齐
+@mixin section-title-right {
+  text-align: right;
+
+  :deep(.uni-section-header) {
+    justify-content: flex-end;
+  }
+
+  :deep(.uni-section-header__content) {
+    align-items: flex-end;
+  }
+}
+/* ==================== 常用颜色变量 (兼容原有代码) ==================== */
+
+// 这些是从你的home_index.vue中提取的变量
+$hot-color: $house-tag-hot;
+$coming-color: $house-tag-coming;
+$new-color: $house-tag-new;
+$discount-color: $house-tag-discount;
+$selling-color: $house-tag-selling;
+$primary-color: $house-color-primary;
+$secondary-color: $house-color-bg;
+$text-color: $house-color-black;
+$text-color-light: $house-color-dark;
+$border-color: $house-color-border;
